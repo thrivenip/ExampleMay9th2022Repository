@@ -1,5 +1,6 @@
 package com.sgtesting.tests;
 
+import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -7,95 +8,87 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class XpathDemo {
+public class XPathDemo {
+
 	public static WebDriver oBrowser=null;
-
 	public static void main(String[] args) {
-
-		lanuchBrowser();
+		launchBrowser();
 		navigate();
-		absoluteXPathDemo();
-		//relativeXPathUsingTagNameAlone();
-			//relativeXPathUsingTagNameWithIndex();
-			//relativeXPathUsingTagNameWithAttributeNameValue();
-			//relativeXPathUsingAttributeNameValue();
-			//relativeXPathUsingAttributeValue();
-			//relativeXPathUsingTagNameWithMultipleAttributeNameValue();
-			relativeXPathUsingTagNameWithMultipleAttributeNameValueUsingAndOperator();
-			//relativeXPathUsingTagNameWithMultipleAttributeNameValueUsingOROperator();
-			relativeXPathUsingPartialAttributeValue();
-		//	relativeXPathUsingTagNameWithAttributeName();
-		//	relativeXPathUsingTagNameWithAttributeName_1();
-		//	relativeXPathUsingTagNameWithAttributeName_2();
-		//	relativeXPathUsingTagNameWithAttributeName_3();
-		//	relativeXPathUsingTagNameWithTextContent();
-			//relativeXPathUsingTagNameWithPartialTextContent();
-		}
-		
-
-	private static void lanuchBrowser()
+	//	absoluteXPathDemo();
+	//	relativeXPathUsingTagNameAlone();
+	//	relativeXPathUsingTagNameWithIndex();
+	//	relativeXPathUsingTagNameWithAttributeNameValue();
+	//	relativeXPathUsingAttributeNameValue();
+	//	relativeXPathUsingAttributeValue();
+	//	relativeXPathUsingTagNameWithMultipleAttributeNameValue();
+	//	relativeXPathUsingTagNameWithMultipleAttributeNameValueUsingAndOperator();
+	//	relativeXPathUsingTagNameWithMultipleAttributeNameValueUsingOROperator();
+	//	relativeXPathUsingPartialAttributeValue();
+	//	relativeXPathUsingTagNameWithAttributeName();
+	//	relativeXPathUsingTagNameWithAttributeName_1();
+	//	relativeXPathUsingTagNameWithAttributeName_2();
+	//	relativeXPathUsingTagNameWithAttributeName_3();
+	//	relativeXPathUsingTagNameWithTextContent();
+		relativeXPathUsingTagNameWithPartialTextContent();
+	}
+	private static void launchBrowser()
 	{
 		try
 		{
-			System.setProperty("webdriver.chrome.driver", "E:\\ExampleAutomation\\Automation\\Web-Automation\\Library\\drivers\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", ".\\Library\\drivers\\chromedriver.exe");
 			oBrowser=new ChromeDriver();
 		}catch(Exception e)
 		{
-			e.printStackTrace();
+			e.printStackTrace();		
 		}
 	}
-
+	
 	private static void navigate()
 	{
 		try
 		{
-		oBrowser.navigate().to("file:///F:/Samplexpathaprogram.html");	
-		Thread.sleep(1000);
+			oBrowser.navigate().to("file:///E:/HTML/Sample.html");
+			Thread.sleep(5000);
 		}catch(Exception e)
 		{
-			e.printStackTrace();
+			e.printStackTrace();		
 		}
+		
 	}
+	
 	private static void absoluteXPathDemo()
 	{
-		oBrowser.findElement(By.xpath("html/body/div/form/input")).sendKeys("demouser");
+		oBrowser.findElement(By.xpath("html/body/div/form/input")).sendKeys("DemoUser1");
 	}
+	
 	/**
 	 * Case 1: Identify the Elemenet based on TagName Alone
 	 * Syntax: //<tagName>
 	 */
 	private static void relativeXPathUsingTagNameAlone()
 	{
-		try
-		{
-			oBrowser.findElement(By.xpath("//input")).sendKeys("Demouser1");
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+		oBrowser.findElement(By.xpath("//input")).sendKeys("DemoUser1");
 	}
-
+	
 	/**
 	 * Case 2: Identify the Element based on TagName with Index
 	 * Syntax: //<tagName>[index]
 	 */
-	
-	private static void	relativeXPathUsingTagNameWithIndex()
+	private static void relativeXPathUsingTagNameWithIndex()
 	{
-		oBrowser.findElement(By.xpath("//input[1]")).sendKeys("Demouser1");
+		oBrowser.findElement(By.xpath("//input[2]")).sendKeys("DemoUser1");
 	}
-
+	
 	/**
 	 * Case 3: Identify the Element based on TagName with 
 	 *         attributename and value combination
 	 * Syntax: //<tagName>[@attributename='attributevalue']
 	 */
-
 	private static void relativeXPathUsingTagNameWithAttributeNameValue()
 	{
-		oBrowser.findElement(By.xpath("//input[@name='pass1word1']")).sendKeys("manager");
+		oBrowser.findElement(By.xpath("//input[@name='pass1word1']")).sendKeys("DemoUser1");
 	}
-
+	
 	/**
 	 * Case 4: Identify the Element based on  
 	 *         attributename and value combination
@@ -111,32 +104,41 @@ public class XpathDemo {
 	 *         attributename value alone
 	 * Syntax: //*[@*='attributevalue']
 	 */
-	private static void	relativeXPathUsingAttributeValue()
+	private static void relativeXPathUsingAttributeValue()
 	{
 		oBrowser.findElement(By.xpath("//*[@*='Submit']")).click();
 	}
-
+	
 	/**
 	 * Case 6: Identify the Element based on TagName with 
 	 *         Multiple attributename and value combination
 	 * Syntax: //<tagName>[@attributename='attributevalue'][@attributename='attributevalue']
 	 */
-	private static void	relativeXPathUsingTagNameWithMultipleAttributeNameValue()
+	private static void relativeXPathUsingTagNameWithMultipleAttributeNameValue()
 	{
-		oBrowser.findElement(By.xpath("//input[@type='button'][@value='Submit']")).click();
-		
+		oBrowser.findElement(By.xpath("//input[@type='button'][@name='submit1btn1']")).click();
 	}
-
+	
 	/**
 	 * Case 7: Identify the Element based on TagName with 
 	 *         Multiple attributename and value combination using and operator
 	 * Syntax: //<tagName>[@attributename='attributevalue' and @attributename='attributevalue']
 	 */
-	
-	private static void	relativeXPathUsingTagNameWithMultipleAttributeNameValueUsingAndOperator()
+	private static void relativeXPathUsingTagNameWithMultipleAttributeNameValueUsingAndOperator()
 	{
 		oBrowser.findElement(By.xpath("//input[@type='button' and @name='submit1btn1']")).click();
 	}
+	
+	/**
+	 * Case 8: Identify the Element based on TagName with 
+	 *         Multiple attributename and value combination using or operator
+	 * Syntax: //<tagName>[@attributename='attributevalue' or @attributename='attributevalue']
+	 */
+	private static void relativeXPathUsingTagNameWithMultipleAttributeNameValueUsingOROperator()
+	{
+		oBrowser.findElement(By.xpath("//input[@type='button' or @name='submit1btn1']")).click();
+	}
+	
 	/**
 	 * Case 9: Identify the Element based on TagName with 
 	 *         attributename and partial attribute value combination
